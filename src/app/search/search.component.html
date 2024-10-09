@@ -1,0 +1,77 @@
+
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4><b>Book List</b></h4>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <button class="btn btn-success" (click)="searchAll()">
+                            <i class='fas fa-plus-search'></i><span>Search</span>
+                        </button>
+                        <span class="form-group has-search">
+                            <input type="text" class="form-control" [(ngModel)]="searchQuery" placeholder="Search All"
+                                name="Search" autocomplete="off">
+
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+                    <div class="col-sm-3">
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" [(ngModel)]="searchTitle" placeholder="Search By Title"
+                                aria-label="Search By Title" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" (click)="searchByTitle()" type="button" id="button-addon2">Search</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" [(ngModel)]="searchAuthor" placeholder="Search By Author"
+                                aria-label="Search By Author" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" (click)="searchByAuthor()" type="button" id="button-addon2">Search</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" [(ngModel)]="searchPublications" placeholder="Search By Publications"
+                                aria-label="Search By Publications" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" (click)="searchByPublications()" type="button" id="button-addon2">Search</button>
+                        </div>
+                    </div>
+                
+            </div>
+            <table class="table table-striped table-hover table-bordered table-content">
+                <thead>
+                    <tr class="center-align">
+                        <!-- <th>ID</th> -->
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Publications</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of bookList" class="center-align">
+                        <!-- <td>{{ inventory.id }}</td> -->
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.publications }}</td>
+
+                    </tr>
+                    <tr>
+                        <td *ngIf="bookList.length == 0" colspan="12">No Books</td>
+                    </tr>
+                </tbody>
+            </table>
+            <ngb-pagination class="d-flex justify-content-end" (click)="getAllBooks()" [collectionSize]="120"
+                [(page)]="pageNo" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" />
+        </div>
+    </div>
+</div>
